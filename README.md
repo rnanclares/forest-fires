@@ -4,7 +4,7 @@ Construir un modelo para estimar la proabilidad de incendios forestales,  usando
 
 ## Variables
 
-Incendios históricos - FireCCI51: MODIS Fire_cci Burned Area Pixel product, version 5.1 
+[Incendios históricos](FireCCI51: MODIS Fire_cci Burned Area Pixel product, version 5.1) 
 
 ### Ambientales 
 * Temperatura (MODIS)
