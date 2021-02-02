@@ -1,4 +1,14 @@
-#library(terra)
+##################################################
+## author  =  Alexander Quevedo 
+## copyright =  Copyright 2021, Gobierno de Jalisco
+## credits = Alexander Quevedo
+##  license = "MIT"
+## version = 0.0.1
+## maintainer = Alexander Quevedo
+## email = alexander.quevedo@jalisco.gob.mx
+## status = Development
+##################################################
+
 library(stars)
 library(starsExtra)
 library(zoo)
