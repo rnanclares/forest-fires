@@ -106,7 +106,6 @@ for (i in 1:length(date_y)) {
 
 s_incendios$FireCCI[s_incendios$FireCCI == 0]  <- NA
 
-z<- n_list
 for (fm in 1:length(n_list)) {
   fire_month <- s_incendios %>% slice(time, fm)
   fire_dummy <-
