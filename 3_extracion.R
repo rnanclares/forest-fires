@@ -119,8 +119,20 @@ for(i in 1:length(periodo)){
   
 }
 
-sapply(names(n_list),
-       function (x)
-         st_write(n_list[[x]], "muestra/poligonos_muestra_datos.gpkg", x, append = TRUE))
+#sapply(names(n_list),
+#       function (x)
+#         st_write(n_list[[x]], "muestra/poligonos_muestra_datos.gpkg", x, append = TRUE))
+df_muestra_datos  <- do.call(rbind, n_list)
+
+st_write(df_muestra_datos ,"muestra/poligonos_muestra_datos.gpkg", append = FALSE)
+
+df_muestra_datos %>% st_drop_geometry() -> a 
+
+a$incendio <- as.factor(a$incendio)
 
 
+library(WVPlots)
+
+
+colormap = c('#a6611a', '#dfc27d')
+PairPlot(a, colnames(a)[3:11], "Example plot", group_var = "incendio")
