@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="UTF-8" />
+    <property key="dff.date" value="2021-Feb-09 11:15:49" />
+    <property key="dff.version" value="5.2.1.20201203" />
+    <containerfunctor name="For">
+        <property key="dff.container.collapsed" value="no" />
+        <property key="dff.functor.alias" value="for1438" />
+        <inputport name="firstIterationStep">2001</inputport>
+        <inputport name="lastIterationStep">2019</inputport>
+        <inputport name="stepIncrement">1</inputport>
+        <inputport name="sequenceInput">.none</inputport>
+        <internaloutputport name="step" id="v1" />
+        <functor name="Step">
+            <property key="dff.functor.alias" value="step1439" />
+            <inputport name="step" peerid="v1" />
+        </functor>
+        <functor name="LoadCategoricalMap">
+            <property key="dff.functor.alias" value="loadCategoricalMap471" />
+            <property key="viewer.map" value="yes" />
+            <inputport name="filename">&quot;incendio_anio/anio_.tif&quot;</inputport>
+            <inputport name="nullValue">.default</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">4</inputport>
+            <inputport name="step" peerid="v1" />
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v2" />
+        </functor>
+        <containerfunctor name="CalculateCategoricalMap">
+            <property key="dff.container.collapsed" value="no" />
+            <property key="dff.functor.alias" value="calculateCategoricalMap523" />
+            <property key="viewer.result" value="yes" />
+            <inputport name="expression">[&#x0A;    if isNull(i1) then&#x0A;        0&#x0A;    else &#x0A;        1&#x0A;]</inputport>
+            <inputport name="cellType">.int8</inputport>
+            <inputport name="nullValue">.default</inputport>
+            <inputport name="resultIsSparse">.no</inputport>
+            <inputport name="resultFormat">.none</inputport>
+            <outputport name="result" id="v3" />
+            <functor name="NumberMap">
+                <property key="dff.functor.alias" value="numberMap524" />
+                <inputport name="map" peerid="v2" />
+                <inputport name="mapNumber">1</inputport>
+            </functor>
+        </containerfunctor>
+        <functor name="CalcDistanceMap">
+            <property key="dff.functor.alias" value="calcDistanceMap1440" />
+            <property key="viewer.distance" value="yes" />
+            <inputport name="categoricalMap" peerid="v3" />
+            <inputport name="categories">[ 1 ]</inputport>
+            <inputport name="cellType">.int32</inputport>
+            <inputport name="nullValue">.default</inputport>
+            <inputport name="truncateDistance">.no</inputport>
+            <outputport name="distance" id="v4" />
+        </functor>
+        <containerfunctor name="CalculateMap">
+            <property key="dff.container.collapsed" value="no" />
+            <property key="dff.functor.alias" value="calculateMap527" />
+            <property key="viewer.result" value="yes" />
+            <inputport name="expression">[&#x0A;    i1 / 1000&#x0A;]</inputport>
+            <inputport name="cellType">.int16</inputport>
+            <inputport name="nullValue">.default</inputport>
+            <inputport name="resultIsSparse">.no</inputport>
+            <inputport name="resultFormat">.none</inputport>
+            <outputport name="result" id="v5" />
+            <functor name="NumberMap">
+                <property key="dff.functor.alias" value="numberMap528" />
+                <inputport name="map" peerid="v4" />
+                <inputport name="mapNumber">1</inputport>
+            </functor>
+        </containerfunctor>
+        <functor name="SaveMap">
+            <property key="dff.functor.alias" value="saveMap537" />
+            <inputport name="map" peerid="v5" />
+            <inputport name="filename">&quot;distancia_incendios/distancia_.tif&quot;</inputport>
+            <inputport name="suffixDigits">4</inputport>
+            <inputport name="step" peerid="v1" />
+            <inputport name="useCompression">.yes</inputport>
+            <inputport name="workdir">.none</inputport>
+            <inputport name="ignoreCostlySparseCategories">.yes</inputport>
+        </functor>
+    </containerfunctor>
+</script>
