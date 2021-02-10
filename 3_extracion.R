@@ -43,7 +43,11 @@ Slope_T <- ee$Terrain$slope(DEM)
 
 
 n_list <- list()
-for(i in 1:length(periodo)){
+
+for( i in 1:length(periodo)){
+  
+  anio_actual <-  year(periodo[i])
+   
   
   nlayer <-  periodo[i] %>% as.character()
   
@@ -115,8 +119,12 @@ for(i in 1:length(periodo)){
   
   rm(stack_gee)
   
-  n_list[[nlayer]]  <- datos
   
+  ### distancia 
+  distancia  <-  raster(paste0("data/distancia_incendios/distancia_", anio_actual - 1,".tif"))
+  datos$dist_km_prev <- raster::extract(distancia, datos, fun = min, na.rm = TRUE)
+  
+  n_list[[nlayer]]  <- datos
 }
 
 #sapply(names(n_list),
@@ -126,13 +134,3 @@ df_muestra_datos  <- do.call(rbind, n_list)
 
 st_write(df_muestra_datos ,"muestra/poligonos_muestra_datos.gpkg", append = FALSE)
 
-df_muestra_datos %>% st_drop_geometry() -> a 
-
-a$incendio <- as.factor(a$incendio)
-
-
-library(WVPlots)
-
-
-colormap = c('#a6611a', '#dfc27d')
-PairPlot(a, colnames(a)[3:11], "Example plot", group_var = "incendio")
