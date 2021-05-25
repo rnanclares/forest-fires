@@ -52,6 +52,11 @@ by_t = "1 years"
 year_fires <- aggregate(s_incendios, by = by_t, FUN = sum)
 year_fires$FireCCI[year_fires$FireCCI == 0] <- NA
 
+#as(year_fires,"Raster") -> a
+#nraster <- unique(year(z)) %>%  paste0("anio_",.)
+#names(a) <- nraster
+raster::writeRaster(a, filename=names(a), bylayer=TRUE,format="GTiff", datatype = "INT1U")
+
 #plot(year_fires)
 #drop(year_fires, drop = 1)
 
