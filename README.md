@@ -45,4 +45,4 @@ iniDate = '2021-04-01'
 endDate = '2021-04-30'
 ```
 
-* Finalmente 
+* El scrip 6 
