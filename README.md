@@ -50,3 +50,42 @@ endDate = '2021-04-30'
 ```r
 mes_eval <- 5 # mes para el caul se calculara el riesgo
 ```
+
+
+### Nota 
+
+En ultimo mes los datos de precipitación y humedad estan presentando retrasos en su ingesta a la plataforma GEE en este caso se empleo un valor promedio 
+
+```js
+var geometry = ee.Geometry.Rectangle([-105.70671, 18.91105, -101.45436, 22.75942])
+var m = 5  //##
+var chirps = ee.ImageCollection('UCSB-CHG/CHIRPS/DAILY')
+  .select('precipitation')
+  .filter(ee.Filter.calendarRange(m, m, 'month'))
+  .mean()
+
+var smos = ee.ImageCollection('NASA_USDA/HSL/soil_moisture')
+.select('ssm', 'susm')
+.filter(ee.Filter.calendarRange(m, m, 'month'))
+.mean()
+
+
+Export.image.toDrive({
+  image: chirps,
+  description: 'precipitacion',
+  scale: 250,
+  crs: 'EPSG:32613',
+  folder: 'incendios_2021' , 
+  region: geometry
+});
+
+
+Export.image.toDrive({
+  image: smos,
+  description: 'smos',
+  scale: 250,
+  crs: 'EPSG:32613',
+  folder: 'incendios_2021' , 
+  region: geometry
+});
+```
