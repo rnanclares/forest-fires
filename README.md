@@ -37,7 +37,7 @@ Los datos resultantes de los Scripts 0 a 4 se encuentran en gs://geo-2021/digeo/
 
 ### Inferencias 
 
-* Para realizar la inferencia se deben descargar las variables explicativas del mes previo usando el Jupyter Notebook - `5_Datos_para_inferencia.ipynb`, se recomienda correrlo usando google colab. Estos datos se exportaran dentro de la carpeta `incendios_2021`, estas deben de descargarse y copiarse en la carteta `data/mescorrespondiente`.    
+* Para realizar la inferencia se deben descargar las variables explicativas del mes previo usando el Jupyter Notebook - `5_Datos_para_inferencia.ipynb`, se recomienda correrlo usando google colab. Estos datos se exportaran dentro de la carpeta `incendios_2021` en google drive, estas capas se deben de descargar y copiarse en la carteta `data/mescorrespondiente`.    
 
 ```python 
 ### Calcula las variables para abril, las cuales seran empleadas para el calculo del mes de mayo  
@@ -45,4 +45,8 @@ iniDate = '2021-04-01'
 endDate = '2021-04-30'
 ```
 
-* El scrip 6 
+* `6_inferencia.R` -  para realizar la inferencia simplemente se debe definir en el script el mes para el cual se realizara el calculo del riesgo
+
+```r
+mes_eval <- 5 # mes para el caul se calculara el riesgo
+```
