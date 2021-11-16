@@ -32,7 +32,7 @@ Sys.setenv(RETICULATE_PYTHON='/home/rnanclares/anaconda3/envs/gee/bin')
 # ee_clean_pyenv() ### Remove rgee system variables from .Renviron
 # Use in case you want to start the installation from scratch
 
-ee_check() # This command checks if the environment fills all the requirements, you can use is in 1) and 2)
+ee_check() # This command checks if the environment fills all the requirements, you can use in 1) and 2)
 ## It is necessary just once
 
 
