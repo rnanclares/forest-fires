@@ -14,11 +14,16 @@ library(tidyverse)
 library(sf)
 library(raster)
 
-Sys.setenv(EARTHENGINE_PYTHON='/home/alequech/anaconda3/envs/gee/bin')
-Sys.setenv(RETICULATE_PYTHON='/home/alequech/anaconda3/envs/gee/bin')
+# Lines 19 and 20 refer to the bin folder inside an anaconda environment
+# name gee where the geemap package has been installed
+# EARTHENGINE_PYTHON and RETICULATE_PYTHON are two environmental variables
+# You can create the anaconda environment with conda create --name gee python=3.8 geemap -c conda-forge
+# This will create an anaconda environment named gee
 
-#setwd("~/Documents/iA_LULC")
-#/home/alequech/.virtualenvs/rgee/bin/python 
+Sys.setenv(EARTHENGINE_PYTHON='/home/rnanclares/anaconda3/envs/gee/bin')
+Sys.setenv(RETICULATE_PYTHON='/home/rnanclares/anaconda3/envs/gee/bin')
+
+# After installation you have to 
 # ee_install()
 # ee_clean_pyenv()
 ee_check()
