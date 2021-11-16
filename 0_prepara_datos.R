@@ -28,7 +28,7 @@ ee_check()
 # Initialize Earth Engine!
 ee_Initialize()
 
-ee_roi <- st_read("data/limite_frankenstein_utm.shp") %>%
+ee_roi <- st_read("data/limite_combinado_lulc.gpkg") %>%
   st_geometry() %>%
   sf_as_ee()
 
