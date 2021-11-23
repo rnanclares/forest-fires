@@ -86,7 +86,7 @@ plot(model_rf$finalModel)
 saveRDS(model_rf, "./modelo_rf.rds")
 
 
-fires_pro <- predict(my_mo, incendios_Test, type="prob")
+fires_pro <- predict(model_rf, incendios_Test, type="prob")
 fires_cla <- predict(model_rf, incendios_Test)
 
 incendios_Test$prob_incendio <- fires_pro$'1'
